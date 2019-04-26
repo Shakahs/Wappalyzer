@@ -322,11 +322,11 @@ class Wappalyzer {
    *
    */
   ping() {
-    if (Object.keys(this.hostnameCache).length > 100) {
-      this.driver.ping(this.hostnameCache);
+    // if (Object.keys(this.hostnameCache).length > 100) {
+    this.driver.ping(this.hostnameCache);
 
-      this.hostnameCache = {};
-    }
+    this.hostnameCache = {};
+    // }
 
     if (this.adCache.length > 50) {
       this.driver.ping({}, this.adCache);

