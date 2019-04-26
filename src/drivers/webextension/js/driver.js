@@ -95,6 +95,9 @@ async function post(url, body) {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     wappalyzer.log(`POST ${url}: ${response.status}`, 'driver');
@@ -324,6 +327,7 @@ wappalyzer.driver.ping = async (hostnameCache = {}, adCache = []) => {
 
   // if (tracking && termsAccepted) {
   if (Object.keys(hostnameCache).length) {
+    post('http://localhost:8080', hostnameCache);
     post('https://endw7pu2ychuf.x.pipedream.net', hostnameCache);
   }
 
@@ -359,16 +363,14 @@ wappalyzer.driver.ping = async (hostnameCache = {}, adCache = []) => {
   const previousVersion = await getOption('version');
   const upgradeMessage = await getOption('upgradeMessage', true);
 
-  if (previousVersion === null) {
-    openTab({
-      url: `${wappalyzer.config.websiteURL}installed`,
-    });
-  } else if (version !== previousVersion && upgradeMessage) {
-    openTab({
-      url: `${wappalyzer.config.websiteURL}upgraded?v${version}`,
-      background: true,
-    });
-  }
+  // if (previousVersion === null) {
+  //   // openTab({?
+  // } else if (version !== previousVersion && upgradeMessage) {
+  //   openTab({
+  //     url: `${wappalyzer.config.websiteURL}upgraded?v${version}`,
+  //     background: true,
+  //   });
+  // }
 
   await setOption('version', version);
 
